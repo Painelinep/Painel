@@ -30,7 +30,7 @@ if (isset($_SERVER['HTTP_HOST'])) {
     define('BASE_URL', $_SERVER['HTTP_HOST']);
 }
 
-if (APPLICATION_ENV == 'development') {
+if (APPLICATION_ENV == 'production') {
     error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
     ini_set("display_errors", 1);
 }
