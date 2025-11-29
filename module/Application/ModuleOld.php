@@ -172,8 +172,8 @@ class Module
     public function getViewHelperConfig()
     {
         return array(
-            'invokables' => array(
-     //           'currentRequest' => 'Application\View\Helper\CurrentRequest',
+            'factories' => array(
+                // 'currentRequest' => Zend\ServiceManager\Factory\InvokableFactory::class,
             ),
         );
     }

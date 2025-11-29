@@ -2,12 +2,12 @@
 
 return array(
     'modules' => array(
+        'ModuloApi',
         'Application',
         'Dashboard',
         'Autenticacao',
         'Usuario',
         'Estrutura',
-        'DOMPDFModule',
         'Gerador',
         'Modulo',
         'RiskManager',
@@ -18,8 +18,8 @@ return array(
     'module_listener_options' => array(
         'module_paths' => array(
             './module',
+            './module/ModuloApi',
             './vendor',
-            './vendor/moduloapi',
         ),
         'config_glob_paths' => array(
             'config/autoload/global.php',

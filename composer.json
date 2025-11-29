@@ -8,8 +8,23 @@
     ],
     "homepage": "http://framework.zend.com/",
     "require": {
-        "php": ">=7.0.0",
-        "zendframework/zendframework": "2.4.13",
-        "dino/dompdf-module": "dev-master"
+        "php": "^7.2",
+        "zendframework/zendframework": "^3.0",
+        "dompdf/dompdf": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Base\\": "module/ModuloApi/Base/src/",
+            "Estrutura\\": "module/ModuloApi/Estrutura/src/",
+            "Gerador\\": "module/ModuloApi/Gerador/src/",
+            "Modulo\\": "module/ModuloApi/Modulo/src/",
+            "RiskManager\\": "module/ModuloApi/RiskManager/src/",
+            "Usuario\\": "module/ModuloApi/Usuario/src/"
+        }
+    },
+    "config": {
+        "audit": {
+            "block-insecure": false
+        }
     }
 }

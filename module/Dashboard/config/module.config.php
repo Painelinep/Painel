@@ -67,13 +67,13 @@ return array(
         'Dashboard' => 'layout/dashboard',
     ),
     'controllers' => array(
-        'invokables' => array(
-            'dashboard' => 'Dashboard\Controller\DashboardController',
-            'dashboard-index' => 'Dashboard\Controller\IndexController',
-            'dashboard-data' => 'Dashboard\Controller\ProcessDataController',
-            'twitter' => 'Dashboard\Controller\TwitterController',
-            'error' => 'Dashboard\Controller\ErrorController',
-            'rss' => 'Dashboard\Controller\RssController',
+        'factories' => array(
+            'dashboard' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            'dashboard-index' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            'dashboard-data' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            'twitter' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            'error' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            'rss' => Zend\ServiceManager\Factory\InvokableFactory::class,
         ),
     ),
     'view_manager' => array(

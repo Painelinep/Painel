@@ -35,7 +35,7 @@ return array(
         ),
     ),
     'controllers' => array(
-        'invokables' => array(
+        'factories' => array(
 //            'classes' => 'Classes\Controller\ClassesController',
 //            'classes-blacklist' => 'Classes\Controller\BlacklistController',
 //            'classes-nacionalidade' => 'Classes\Controller\NacionalidadeController',

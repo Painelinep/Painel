@@ -9,6 +9,8 @@ use Estrutura\Service\AbstractEstruturaService;
 use Modulo\Service\UsuarioApi;
 use RiskManager\MySpace\Service\Me;
 use RiskManager\OData\TokenDetails;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
@@ -170,6 +172,19 @@ class Module
         return include __DIR__ . '/config/acl.config.php';
     }
 
+    public function getServiceConfig()
+    {
+        return array(
+            'factories' => array(
+                'dompdf' => function () {
+                    $options = new Options();
+                    $options->set('isRemoteEnabled', true);
+                    return new Dompdf($options);
+                },
+            ),
+        );
+    }
+
     public function getAutoloaderConfig()
     {
         return array(
@@ -184,8 +199,8 @@ class Module
     public function getViewHelperConfig()
     {
         return array(
-            'invokables' => array(
-     //           'currentRequest' => 'Application\View\Helper\CurrentRequest',
+            'factories' => array(
+                // 'currentRequest' => Zend\ServiceManager\Factory\InvokableFactory::class,
             ),
         );
     }

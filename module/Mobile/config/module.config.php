@@ -33,8 +33,8 @@ return array(
         ),
     ),
     'controllers' => array(
-        'invokables' => array(
-            'Mobile\Controller\Index' => 'Mobile\Controller\IndexController',
+        'factories' => array(
+            'Mobile\Controller\Index' => Zend\ServiceManager\Factory\InvokableFactory::class,
         ),
     ),
     'view_manager' => array(

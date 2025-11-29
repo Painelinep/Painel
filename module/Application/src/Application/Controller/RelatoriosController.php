@@ -4,7 +4,7 @@ namespace Application\Controller;
 
 use Application\Form\Relatorios;
 use Application\Service\Charts;
-use DOMPDFModule\View\Model\PdfModel;
+use Dompdf\Dompdf;
 use Estrutura\Controller\AbstractEstruturaController;
 use RiskManager\Workflow\Service\Event;
 use Zend\Db\Sql\Ddl\Column\Char;
@@ -218,16 +218,25 @@ class RelatoriosController extends AbstractEstruturaController{
                 $fileName = $name.' '.$avaliacaoPedagogica.'.pdf';
                 if(!preg_match('/.pdf/',$fileName)) $fileName .= '.pdf';
                 $this->layout('layout/limpo');
-                $pdf = new PdfModel();
-                $pdf->setOption('paperSize', 'A4');
-                $pdf->setOption('paperOrientation', 'landscape');
-                $pdf->setOption("filename", $fileName);
-                $pdf->setOption("enable_remote", true);
 
-//                 $pdf = new ViewModel($pdfJsonArray);
-                $pdf->setVariables($pdfJsonArray);
+                // Renderiza o template em HTML e gera o PDF com Dompdf
+                $viewModel = new ViewModel($pdfJsonArray);
+                $viewModel->setTemplate('application/relatorios/gerar');
+                $renderer = $this->getServiceLocator()->get('ViewRenderer');
+                $html = $renderer->render($viewModel);
 
-                return $pdf;
+                /** @var Dompdf $dompdf */
+                $dompdf = $this->getServiceLocator()->get('dompdf');
+                $dompdf->setPaper('A4', 'landscape');
+                $dompdf->loadHtml($html);
+                $dompdf->render();
+
+                $response = $this->getResponse();
+                $response->getHeaders()->addHeaderLine('Content-Type', 'application/pdf');
+                $response->getHeaders()->addHeaderLine('Content-Disposition', 'attachment; filename="'.$fileName.'"');
+                $response->setContent($dompdf->output());
+
+                return $response;
 
             }else{
                 $this->addErrorMessage('Favor preencher o formulário corretamente.');
