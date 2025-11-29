@@ -1,0 +1,9 @@
+.svn/
+data/cache/
+*.log
+config/autoload/local.php
+*.log
+*.sql
+*.zip
+data/cache/
+.idea/
