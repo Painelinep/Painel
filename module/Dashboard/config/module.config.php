@@ -13,7 +13,7 @@ return array(
                 ),
             ),
             'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Zend\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
@@ -33,7 +33,7 @@ return array(
                 ),
             ),
             'error' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Zend\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/error/nao-autorizado',
                     'defaults' => array(
@@ -68,12 +68,20 @@ return array(
     ),
     'controllers' => array(
         'factories' => array(
-            'dashboard' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'dashboard-index' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'dashboard-data' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'twitter' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'error' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'rss' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Dashboard\Controller\DashboardController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Dashboard\Controller\IndexController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Dashboard\Controller\ProcessDataController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Dashboard\Controller\TwitterController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Dashboard\Controller\ErrorController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Dashboard\Controller\RssController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+        ),
+        'aliases' => array(
+            'dashboard' => Dashboard\Controller\DashboardController::class,
+            'dashboard-index' => Dashboard\Controller\IndexController::class,
+            'dashboard-data' => Dashboard\Controller\ProcessDataController::class,
+            'twitter' => Dashboard\Controller\TwitterController::class,
+            'error' => Dashboard\Controller\ErrorController::class,
+            'rss' => Dashboard\Controller\RssController::class,
         ),
     ),
     'view_manager' => array(

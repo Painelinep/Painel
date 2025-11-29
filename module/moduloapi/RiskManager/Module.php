@@ -23,9 +23,14 @@ class Module
     {
         return array(
             'factories' => array(
-                'currentRequest' => Zend\ServiceManager\Factory\InvokableFactory::class,
-                'formRowNoLabel' => Zend\ServiceManager\Factory\InvokableFactory::class,
-                'RiskManager' => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Base\View\Helper\CurrentRequest::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Base\View\Helper\FormRowNoLabel::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Base\View\Helper\RiskManager::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            ),
+            'aliases' => array(
+                'currentRequest' => \Base\View\Helper\CurrentRequest::class,
+                'formRowNoLabel' => \Base\View\Helper\FormRowNoLabel::class,
+                'RiskManager' => \Base\View\Helper\RiskManager::class,
             ),
         );
     }

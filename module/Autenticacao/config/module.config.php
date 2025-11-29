@@ -38,7 +38,10 @@ return array(
     ),
     'controllers' => array(
         'factories' => array(
-            'autenticacao' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Autenticacao\Controller\AutenticacaoController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+        ),
+        'aliases' => array(
+            'autenticacao' => Autenticacao\Controller\AutenticacaoController::class,
         ),
     ),
     'view_manager' => array(

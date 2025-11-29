@@ -52,15 +52,26 @@ class Module
     {
         return array(
             'factories' => array (
-                'formataCPFouCNPJ' => Zend\ServiceManager\Factory\InvokableFactory::class,
-                'Usuario'=> Zend\ServiceManager\Factory\InvokableFactory::class,
-                'Projeto'=> Zend\ServiceManager\Factory\InvokableFactory::class,
-                'Logo'=> Zend\ServiceManager\Factory\InvokableFactory::class,
-                'Data'=> Zend\ServiceManager\Factory\InvokableFactory::class,
-                'FormInput' => Zend\ServiceManager\Factory\InvokableFactory::class,
-                'Perfil' => Zend\ServiceManager\Factory\InvokableFactory::class,
-                'Info' => Zend\ServiceManager\Factory\InvokableFactory::class,
-                'Acl' => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Estrutura\View\Helper\FormataCPFouCNPJ::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Estrutura\View\Helper\Usuario::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Estrutura\View\Helper\Projeto::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Estrutura\View\Helper\Logo::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Estrutura\View\Helper\Data::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Estrutura\View\Helper\FormInput::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Estrutura\View\Helper\Perfil::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Estrutura\View\Helper\Info::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+                \Estrutura\View\Helper\Acl::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            ),
+            'aliases' => array(
+                'formataCPFouCNPJ' => \Estrutura\View\Helper\FormataCPFouCNPJ::class,
+                'Usuario' => \Estrutura\View\Helper\Usuario::class,
+                'Projeto' => \Estrutura\View\Helper\Projeto::class,
+                'Logo' => \Estrutura\View\Helper\Logo::class,
+                'Data' => \Estrutura\View\Helper\Data::class,
+                'FormInput' => \Estrutura\View\Helper\FormInput::class,
+                'Perfil' => \Estrutura\View\Helper\Perfil::class,
+                'Info' => \Estrutura\View\Helper\Info::class,
+                'Acl' => \Estrutura\View\Helper\Acl::class,
             ),
         );
     }

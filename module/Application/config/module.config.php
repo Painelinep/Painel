@@ -3,7 +3,7 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Zend\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
@@ -23,7 +23,7 @@ return array(
                 ),
             ),
             'error' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Zend\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/error/nao-autorizado',
                     'defaults' => array(
@@ -81,18 +81,32 @@ return array(
     ),
     'controllers' => array(
         'factories' => array(
-            'index' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'triagem' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'validados' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'relatorios' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'error' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'configuracao' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'api' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'ajuda' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'calendario' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'gantt' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'contratos' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'backup' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\IndexController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\TriagemController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\ValidadosController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\RelatoriosController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\ErrorController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\ConfiguracaoController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\ApiController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\AjudaController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\CalendarioController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\GanttController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\ContratosController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Application\Controller\BackupController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+        ),
+        'aliases' => array(
+            'index' => Application\Controller\IndexController::class,
+            'triagem' => Application\Controller\TriagemController::class,
+            'validados' => Application\Controller\ValidadosController::class,
+            'relatorios' => Application\Controller\RelatoriosController::class,
+            'error' => Application\Controller\ErrorController::class,
+            'configuracao' => Application\Controller\ConfiguracaoController::class,
+            'api' => Application\Controller\ApiController::class,
+            'ajuda' => Application\Controller\AjudaController::class,
+            'calendario' => Application\Controller\CalendarioController::class,
+            'gantt' => Application\Controller\GanttController::class,
+            'contratos' => Application\Controller\ContratosController::class,
+            'backup' => Application\Controller\BackupController::class,
         ),
     ),
     'view_manager' => array(

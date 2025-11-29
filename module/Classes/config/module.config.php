@@ -4,7 +4,7 @@ return array(
     'router' => array(
         'routes' => array(
             'classes-home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'type' => 'Zend\Router\Http\Segment',
                 'options' => array(
                     'route'    => '/classes',
                     'defaults' => array(

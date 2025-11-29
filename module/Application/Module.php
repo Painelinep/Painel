@@ -26,15 +26,22 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-        $moduleManager = $e->getApplication()->getServiceManager()->get('modulemanager');
+        $moduleManager = $e->getApplication()->getServiceManager()->get('ModuleManager');
         $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
         $sharedEvents->attach('Zend\Mvc\Controller\AbstractController', MvcEvent::EVENT_DISPATCH, array($this, 'controllerDispatch'), 100);
    
-   		 $translator=$e->getApplication()->getServiceManager()->get('translator');
-		 $translator->addTranslationFile(
-	        'phpArray',
-		    './vendor/zendframework/zendframework/resources/languages/pt_BR/Zend_Validate.php'
-		 );
+         $translator=$e->getApplication()->getServiceManager()->get('translator');
+         $translator->setLocale('pt_BR');
+         $translator->setFallbackLocale('pt_BR');
+         $basePath = realpath(__DIR__ . '/../../vendor/zendframework/zend-i18n-resources/languages');
+         if ($basePath && file_exists($basePath . '/pt_BR/Zend_Validate.php')) {
+             $translator->addTranslationFile(
+                'phpArray',
+                $basePath . '/pt_BR/Zend_Validate.php',
+                'default',
+                'pt_BR'
+             );
+         }
 		 AbstractValidator::setDefaultTranslator($translator);
 
          $e->getApplication()->getEventManager()->attach('route', array($this, 'checkAcl'));
@@ -46,10 +53,9 @@ class Module
      */
    public function controllerDispatch(MvcEvent $e)
     {
-
-        AbstractEstruturaService::setServiceManager($e->getTarget()->getServiceLocator());
-        AbstractForm::setServiceManager($e->getTarget()->getServiceLocator());
-        $locator = $e->getTarget()->getServiceLocator();
+        $locator = $e->getApplication()->getServiceManager();
+        AbstractEstruturaService::setServiceManager($locator);
+        AbstractForm::setServiceManager($locator);
         $route     = $e->getTarget()->getEvent()->getRouteMatch()->getParams();
         $controller  = $e->getTarget();
 

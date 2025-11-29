@@ -4,7 +4,7 @@ return array(
     'router' => array(
         'routes' => array(
             'navegacao' => array(
-                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'type' => 'Zend\Router\Http\Segment',
                 'options' => array(
                     'route'    => '/:controller[/:action[/:id][/:id2]]',
                     'defaults' => array(
@@ -23,7 +23,7 @@ return array(
                 ),
             ),
             'estrutura-home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Segment',
+                'type' => 'Zend\Router\Http\Segment',
                 'options' => array(
                     'route'    => '/estrutura[/:controller[/:action[/:id]]]',
                     'defaults' => array(
@@ -59,7 +59,10 @@ return array(
     ),
     'controllers' => array(
         'factories' => array(
-            'Estrutura\Controller\Index' => Zend\ServiceManager\Factory\InvokableFactory::class
+            Estrutura\Controller\IndexController::class => Zend\ServiceManager\Factory\InvokableFactory::class
+        ),
+        'aliases' => array(
+            'Estrutura\Controller\Index' => Estrutura\Controller\IndexController::class
         ),
     ),
     'view_manager' => array(

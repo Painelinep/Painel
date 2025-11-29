@@ -2,6 +2,17 @@
 
 return array(
     'modules' => array(
+        'Zend\Router',
+        'Zend\Validator',
+        'Zend\I18n',
+        'Zend\Mvc\I18n',
+        'Zend\Form',
+        'Zend\Mvc\Plugin\FlashMessenger',
+        'Zend\Mvc\Plugin\Prg',
+        'Zend\Mvc\Plugin\Identity',
+        'Zend\Mvc\Plugin\FilePrg',
+        'Zend\Navigation',
+        'Zend\Paginator',
         'ModuloApi',
         'Application',
         'Dashboard',

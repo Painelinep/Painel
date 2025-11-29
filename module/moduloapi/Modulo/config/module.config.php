@@ -4,7 +4,7 @@ return array(
     'router' => array(
         'routes' => array(
             'modulo-home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Zend\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/modulo/',
                     'defaults' => array(
@@ -26,7 +26,7 @@ return array(
             
             // NOVA ROTA PARA O CALLBACK DO MOBILE
             'callmobileback' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Zend\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/callmobileback',
                     'defaults' => array(
@@ -37,7 +37,7 @@ return array(
             ),
             
             'autenticar' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'type' => 'Zend\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/autenticar',
                     'defaults' => array(
@@ -104,9 +104,14 @@ return array(
     ),
     'controllers' => array(
         'factories' => array(
-            'Modulo' => Zend\ServiceManager\Factory\InvokableFactory::class,
-            'Auth'=> Zend\ServiceManager\Factory\InvokableFactory::class,
-            'Callback'=> Zend\ServiceManager\Factory\InvokableFactory::class,
+            Modulo\Controller\ModuloController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Modulo\Controller\AuthController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Modulo\Controller\CallbackController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+        ),
+        'aliases' => array(
+            'Modulo' => Modulo\Controller\ModuloController::class,
+            'Auth'=> Modulo\Controller\AuthController::class,
+            'Callback'=> Modulo\Controller\CallbackController::class,
         ),
     ),
     'view_manager' => array(

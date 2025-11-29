@@ -34,7 +34,10 @@ return array(
     ),
     'controllers' => array(
         'factories' => array(
-            'Mobile\Controller\Index' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            Mobile\Controller\IndexController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
+        ),
+        'aliases' => array(
+            'Mobile\Controller\Index' => Mobile\Controller\IndexController::class,
         ),
     ),
     'view_manager' => array(
