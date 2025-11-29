@@ -9,8 +9,6 @@ use Estrutura\Service\AbstractEstruturaService;
 use Modulo\Service\UsuarioApi;
 use RiskManager\MySpace\Service\Me;
 use RiskManager\OData\TokenDetails;
-use Dompdf\Dompdf;
-use Dompdf\Options;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Session\Container;
@@ -26,22 +24,15 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-        $moduleManager = $e->getApplication()->getServiceManager()->get('ModuleManager');
+        $moduleManager = $e->getApplication()->getServiceManager()->get('modulemanager');
         $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
         $sharedEvents->attach('Zend\Mvc\Controller\AbstractController', MvcEvent::EVENT_DISPATCH, array($this, 'controllerDispatch'), 100);
    
-         $translator=$e->getApplication()->getServiceManager()->get('translator');
-         $translator->setLocale('pt_BR');
-         $translator->setFallbackLocale('pt_BR');
-         $basePath = realpath(__DIR__ . '/../../vendor/zendframework/zend-i18n-resources/languages');
-         if ($basePath && file_exists($basePath . '/pt_BR/Zend_Validate.php')) {
-             $translator->addTranslationFile(
-                'phpArray',
-                $basePath . '/pt_BR/Zend_Validate.php',
-                'default',
-                'pt_BR'
-             );
-         }
+   		 $translator=$e->getApplication()->getServiceManager()->get('translator');
+		 $translator->addTranslationFile(
+	        'phpArray',
+		    './vendor/zendframework/zendframework/resources/languages/pt_BR/Zend_Validate.php'
+		 );
 		 AbstractValidator::setDefaultTranslator($translator);
 
          $e->getApplication()->getEventManager()->attach('route', array($this, 'checkAcl'));
@@ -53,9 +44,10 @@ class Module
      */
    public function controllerDispatch(MvcEvent $e)
     {
-        $locator = $e->getApplication()->getServiceManager();
-        AbstractEstruturaService::setServiceManager($locator);
-        AbstractForm::setServiceManager($locator);
+
+        AbstractEstruturaService::setServiceManager($e->getTarget()->getServiceLocator());
+        AbstractForm::setServiceManager($e->getTarget()->getServiceLocator());
+        $locator = $e->getTarget()->getServiceLocator();
         $route     = $e->getTarget()->getEvent()->getRouteMatch()->getParams();
         $controller  = $e->getTarget();
 
@@ -178,19 +170,6 @@ class Module
         return include __DIR__ . '/config/acl.config.php';
     }
 
-    public function getServiceConfig()
-    {
-        return array(
-            'factories' => array(
-                'dompdf' => function () {
-                    $options = new Options();
-                    $options->set('isRemoteEnabled', true);
-                    return new Dompdf($options);
-                },
-            ),
-        );
-    }
-
     public function getAutoloaderConfig()
     {
         return array(
@@ -205,8 +184,8 @@ class Module
     public function getViewHelperConfig()
     {
         return array(
-            'factories' => array(
-                // 'currentRequest' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            'invokables' => array(
+     //           'currentRequest' => 'Application\View\Helper\CurrentRequest',
             ),
         );
     }

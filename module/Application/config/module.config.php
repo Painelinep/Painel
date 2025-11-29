@@ -3,7 +3,7 @@ return array(
     'router' => array(
         'routes' => array(
             'home' => array(
-                'type' => 'Zend\Router\Http\Literal',
+                'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
@@ -23,7 +23,7 @@ return array(
                 ),
             ),
             'error' => array(
-                'type' => 'Zend\Router\Http\Literal',
+                'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/error/nao-autorizado',
                     'defaults' => array(
@@ -80,33 +80,19 @@ return array(
         ),
     ),
     'controllers' => array(
-        'factories' => array(
-            Application\Controller\IndexController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\TriagemController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\ValidadosController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\RelatoriosController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\ErrorController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\ConfiguracaoController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\ApiController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\AjudaController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\CalendarioController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\GanttController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\ContratosController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            Application\Controller\BackupController::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-        ),
-        'aliases' => array(
-            'index' => Application\Controller\IndexController::class,
-            'triagem' => Application\Controller\TriagemController::class,
-            'validados' => Application\Controller\ValidadosController::class,
-            'relatorios' => Application\Controller\RelatoriosController::class,
-            'error' => Application\Controller\ErrorController::class,
-            'configuracao' => Application\Controller\ConfiguracaoController::class,
-            'api' => Application\Controller\ApiController::class,
-            'ajuda' => Application\Controller\AjudaController::class,
-            'calendario' => Application\Controller\CalendarioController::class,
-            'gantt' => Application\Controller\GanttController::class,
-            'contratos' => Application\Controller\ContratosController::class,
-            'backup' => Application\Controller\BackupController::class,
+        'invokables' => array(
+            'index' => 'Application\Controller\IndexController',
+            'triagem' => 'Application\Controller\TriagemController',
+            'validados' => 'Application\Controller\ValidadosController',
+            'relatorios' => 'Application\Controller\RelatoriosController',
+            'error' => 'Application\Controller\ErrorController',
+            'configuracao' => 'Application\Controller\ConfiguracaoController',
+            'api' => 'Application\Controller\ApiController',
+            'ajuda' => 'Application\Controller\AjudaController',
+            'calendario' => 'Application\Controller\CalendarioController',
+            'gantt' => 'Application\Controller\GanttController',
+            'contratos' => 'Application\Controller\ContratosController',
+            'backup' => 'Application\Controller\BackupController',
         ),
     ),
     'view_manager' => array(

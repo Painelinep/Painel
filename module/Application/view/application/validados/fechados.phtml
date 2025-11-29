@@ -75,6 +75,7 @@
                     <thead>
                     <tr>
                         <th>Municipio</th>
+                        <th>Exame</th>
                         <th>Coordenação</th>
                         <th>Categoria - Subcategoria</th>
                         <th>Descrição</th>
@@ -111,7 +112,24 @@
                         ?>
                         <tr>
                             <td class="" data-id="<?=$item->getCode()?>"><?=$item->getCustomAttribute('municipio_de_aplicacao')?></td>
-                            <td class="" data-id="<?=$item->getCode()?>"><?=$item->getCustomAttribute('coordenacao')?></td>
+
+
+
+                            <td class="" data-id="<?=$item->getCode()?>">
+    <?php 
+        $coord = $item->getCustomAttribute('coordenacao');
+        if (strpos($coord, 'ENEM') !== false) echo '<span class="label label-primary">ENEM</span>';
+        elseif (strpos($coord, 'PND') !== false) echo '<span class="label label-warning">PND</span>';
+    ?>
+</td>
+
+<td class="" data-id="<?=$item->getCode()?>"><?=$item->getCustomAttribute('coordenacao')?></td>
+</td>
+
+
+
+
+
                             <td class="" data-id="<?=$item->getCode()?>"><?=$item->getCustomAttribute('categoria_evento')?></td>
                             <td class="" data-id="<?=$item->getCode()?>"><?=$item->getDescription()?></td>
                             <td class="" data-id="<?=$item->getCode()?>"><?=$item->getCustomAttribute('providencias_adotadas')?></td>

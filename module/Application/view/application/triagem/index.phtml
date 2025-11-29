@@ -106,6 +106,7 @@
                             <th><input type="checkbox" id="select-all"></th>
                         <?php }; ?>
                         <th>Municipio</th>
+                        <th>Exame</th>
                         <th>Coordenação</th>
                         <th>Categoria</th>
                         <th>SubCategoria</th>
@@ -126,7 +127,24 @@
                                 <td><input type="checkbox" class="arquivar-check" data-id="<?= $item->getId() ?>"></td>
                             <?php }; ?>
                             <td><?= $item->getMunicipio(); ?></td>
+
+
+
+
+
+                            <td>
+                                <?php 
+                                    $coord = $item->getCoordenacao();
+                                    if (strpos($coord, 'ENEM') !== false) echo '<span class="label label-primary">ENEM</span>';
+                                    elseif (strpos($coord, 'PND') !== false) echo '<span class="label label-warning">PND</span>';
+                                ?>
+                            </td>
+
                             <td><?= ($item->getCoordenacao()) ? $item->getCoordenacao() : '-'; ?></td>
+
+
+
+
                             <td><?= $item->getCategoria(); ?></td>
                             <td><?= ($item->getSubCategoria()) ? $item->getSubCategoria() : '-'; ?></td>
                             <td style="font-size: 10px;">

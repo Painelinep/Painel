@@ -622,9 +622,7 @@ class TriagemController extends AbstractEstruturaController
                     return $this->setRedirect('/triagem/cadastro-ocorrencia', $post);
                 }
 
-                $$dados = $form->getData();
-
-                //Categoria Obrigatoria
+                $dados = $form->getData();
 
                 if (empty($dados['categoria']) || strtolower(trim($dados['categoria'])) === 'selecione') {
                     $this->addErrorMessage('Informe a Categoria da ocorrência.');

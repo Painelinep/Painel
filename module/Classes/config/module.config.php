@@ -4,7 +4,7 @@ return array(
     'router' => array(
         'routes' => array(
             'classes-home' => array(
-                'type' => 'Zend\Router\Http\Segment',
+                'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
                     'route'    => '/classes',
                     'defaults' => array(
@@ -35,7 +35,7 @@ return array(
         ),
     ),
     'controllers' => array(
-        'factories' => array(
+        'invokables' => array(
 //            'classes' => 'Classes\Controller\ClassesController',
 //            'classes-blacklist' => 'Classes\Controller\BlacklistController',
 //            'classes-nacionalidade' => 'Classes\Controller\NacionalidadeController',

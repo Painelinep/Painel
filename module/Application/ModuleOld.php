@@ -24,7 +24,7 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-        $moduleManager = $e->getApplication()->getServiceManager()->get('ModuleManager');
+        $moduleManager = $e->getApplication()->getServiceManager()->get('modulemanager');
         $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
         $sharedEvents->attach('Zend\Mvc\Controller\AbstractController', MvcEvent::EVENT_DISPATCH, array($this, 'controllerDispatch'), 100);
    
@@ -172,8 +172,8 @@ class Module
     public function getViewHelperConfig()
     {
         return array(
-            'factories' => array(
-                // 'currentRequest' => Zend\ServiceManager\Factory\InvokableFactory::class,
+            'invokables' => array(
+     //           'currentRequest' => 'Application\View\Helper\CurrentRequest',
             ),
         );
     }

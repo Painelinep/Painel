@@ -44,10 +44,6 @@ class IndexController extends AbstractEstruturaController // <-- MUDANÇA CRUCIA
 
             if ($form->isValid()) {
                 $dados = $form->getData();
-               if (empty($dados['categoria']) || strtolower(trim($dados['categoria'])) === 'selecione') {
-                    $this->addErrorMessage('Informe a Categoria da ocorrência.');
-                    return $this->setRedirect('/mobile', $post);
-                }
 
                 $padrao = [
                     'status' => 1,

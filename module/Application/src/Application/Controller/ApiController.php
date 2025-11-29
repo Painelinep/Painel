@@ -81,7 +81,37 @@ class ApiController extends AbstractEstruturaController{
 
     protected function inserirOcorrencia(){
         $data = $this->getRequest()->getContent();
+
+        // --- GUARDIÃO: SISTEMA DE LOGS (O Grampo) ---
+        // Salva o conteúdo bruto que chegou do RNC para conferência
+        // O arquivo ficará em data/log/api_rnc_DATA.txt
+        $logDir = './data/log/';
+        if (!is_dir($logDir)) @mkdir($logDir, 0777, true);
+        file_put_contents($logDir . 'api_rnc_' . date('Y-m-d_H-i-s') . '_' . rand(100,999) . '.txt', $data);
+        // -------------------------------------------
+
+
         $post = json_decode($data, true);
+
+        // --- GUARDIÃO: TRATAMENTO DE PREFIXO ENEM / PND ---
+        // Lista de municípios exclusivos do ENEM
+        $municipiosEnem = ['PA - BELEM', 'PA - MARITUBA', 'PA - ANANINDEUA'];
+        
+        // Normaliza o município recebido
+        $municipioRecebido = isset($post['municipio']) ? $this->tirarAcentos(mb_strtoupper($post['municipio'], 'UTF-8')) : '';
+        
+        if (isset($post['coordenacao'])) {
+            if (in_array($municipioRecebido, $municipiosEnem)) {
+                // CASO 1: É um dos municípios do ENEM
+                // Transforma "60072 LOCAL" em "60072 ENEM - LOCAL"
+                $post['coordenacao'] = preg_replace('/^(\d+)\s+/', '$1 ENEM - ', $post['coordenacao']);
+            } else {
+                // CASO 2: Qualquer outro município (PND)
+                // Transforma "50004 LOCAL" em "50004 PND - LOCAL"
+                $post['coordenacao'] = preg_replace('/^(\d+)\s+/', '$1 PND - ', $post['coordenacao']);
+            }
+        }
+        // --------------------------------------------------
 
         $categoria = new Categoria();
         $dadosCategoria = $categoria->getCategoria($post['categoria']);
@@ -103,6 +133,13 @@ class ApiController extends AbstractEstruturaController{
         $form->setData($post);
 
         if(!$form->isValid()){
+
+        // --- GUARDIÃO: LOG DE ERRO DE VALIDAÇÃO ---
+            file_put_contents($logDir . 'api_rnc_error_' . date('Y-m-d_H-i-s') . '.txt', "Erro Validação: " . print_r($form->getMessages(), true));
+            // -----------------------------------------
+
+
+
             throw new \Exception('Campos obrigatórios não foram preenchidos');
         }
 
@@ -129,7 +166,7 @@ class ApiController extends AbstractEstruturaController{
 
         $service = new \Classes\Service\Alertas();
         $service->exchangeArray($post);
-        $service->setSistema('Enem');//PROVISORIAMENTE FIXADO
+        $service->setSistema('ENEM - PND');//PROVISORIAMENTE FIXADO
         $service->setAno(date('Y'));
         $service->salvar();
 
@@ -185,7 +222,7 @@ class ApiController extends AbstractEstruturaController{
         $ocorrencia = new Alertas();
         if($filtro){
             $ocorrencia->setAno(date('Y'));
-            $ocorrencia->setSistema('Enem');
+            $ocorrencia->setSistema('ENEM - PND');
         }
         $dadosOcorrencias = $ocorrencia->filtrarObjeto();
         echo count($dadosOcorrencias).' Ocorrencias Localizados'.PHP_EOL;

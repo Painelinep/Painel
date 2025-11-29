@@ -1,7 +1,6 @@
 <?php
-error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 header('Access-Control-Allow-Origin: *');
 
 //ini_set('session.gc_maxlifetime', 3600); // 1 hora
@@ -30,7 +29,7 @@ if (isset($_SERVER['HTTP_HOST'])) {
     define('BASE_URL', $_SERVER['HTTP_HOST']);
 }
 
-if (APPLICATION_ENV == 'production') {
+if (APPLICATION_ENV == 'development') {
     error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE);
     ini_set("display_errors", 1);
 }

@@ -1,5 +1,4 @@
 @ECHO OFF
 setlocal DISABLEDELAYEDEXPANSION
-SET BIN_TARGET=%~dp0/templatemap_generator.php
-SET COMPOSER_RUNTIME_BIN_DIR=%~dp0
+SET BIN_TARGET=%~dp0/../zendframework/zendframework/bin/templatemap_generator.php
 php "%BIN_TARGET%" %*
