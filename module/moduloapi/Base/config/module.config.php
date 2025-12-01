@@ -5,7 +5,7 @@ return array(
         'routes' => array(),
     ),
     'controllers' => array(
-        'factories' => array(
+        'invokables' => array(
 
         ),
     ),

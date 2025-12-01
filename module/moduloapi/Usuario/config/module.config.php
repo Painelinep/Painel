@@ -4,7 +4,7 @@ return array(
     'router' => array(
         'routes' => array(
             'usuario-home' => array(
-                'type' => 'Zend\Router\Http\Segment',
+                'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
                     'route'    => '/usuario[/:action[/:id]]',
                     'defaults' => array(
@@ -14,7 +14,7 @@ return array(
                 ),
             ),
             'usuario-sair' => array(
-                'type' => 'Zend\Router\Http\Segment',
+                'type' => 'Zend\Mvc\Router\Http\Segment',
                 'options' => array(
                     'route'    => '/usuario/sair',
                     'defaults' => array(
@@ -45,11 +45,8 @@ return array(
         ),
     ),
     'controllers' => array(
-        'factories' => array(
-            Usuario\Controller\UsuarioController::class => Zend\ServiceManager\Factory\InvokableFactory::class
-        ),
-        'aliases' => array(
-            'usuario' => Usuario\Controller\UsuarioController::class
+        'invokables' => array(
+            'usuario' => 'Usuario\Controller\UsuarioController'
         ),
     ),
     'view_manager' => array(

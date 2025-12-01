@@ -22,15 +22,10 @@ class Module
     public function getViewHelperConfig()
     {
         return array(
-            'factories' => array(
-                \Base\View\Helper\CurrentRequest::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-                \Base\View\Helper\FormRowNoLabel::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-                \Base\View\Helper\RiskManager::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            ),
-            'aliases' => array(
-                'currentRequest' => \Base\View\Helper\CurrentRequest::class,
-                'formRowNoLabel' => \Base\View\Helper\FormRowNoLabel::class,
-                'RiskManager' => \Base\View\Helper\RiskManager::class,
+            'invokables' => array(
+                'currentRequest' => 'Base\View\Helper\CurrentRequest',
+                'formRowNoLabel' => 'Base\View\Helper\FormRowNoLabel',
+                'RiskManager' => 'Base\View\Helper\RiskManager',
             ),
         );
     }

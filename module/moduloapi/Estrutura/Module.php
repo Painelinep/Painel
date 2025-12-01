@@ -51,27 +51,16 @@ class Module
     public function getViewHelperConfig()
     {
         return array(
-            'factories' => array (
-                \Estrutura\View\Helper\FormataCPFouCNPJ::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-                \Estrutura\View\Helper\Usuario::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-                \Estrutura\View\Helper\Projeto::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-                \Estrutura\View\Helper\Logo::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-                \Estrutura\View\Helper\Data::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-                \Estrutura\View\Helper\FormInput::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-                \Estrutura\View\Helper\Perfil::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-                \Estrutura\View\Helper\Info::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-                \Estrutura\View\Helper\Acl::class => Zend\ServiceManager\Factory\InvokableFactory::class,
-            ),
-            'aliases' => array(
-                'formataCPFouCNPJ' => \Estrutura\View\Helper\FormataCPFouCNPJ::class,
-                'Usuario' => \Estrutura\View\Helper\Usuario::class,
-                'Projeto' => \Estrutura\View\Helper\Projeto::class,
-                'Logo' => \Estrutura\View\Helper\Logo::class,
-                'Data' => \Estrutura\View\Helper\Data::class,
-                'FormInput' => \Estrutura\View\Helper\FormInput::class,
-                'Perfil' => \Estrutura\View\Helper\Perfil::class,
-                'Info' => \Estrutura\View\Helper\Info::class,
-                'Acl' => \Estrutura\View\Helper\Acl::class,
+            'invokables' => array (
+                'formataCPFouCNPJ' => '\Estrutura\View\Helper\FormataCPFouCNPJ($cpf)',
+                'Usuario'=> '\Estrutura\View\Helper\Usuario',
+                'Projeto'=> '\Estrutura\View\Helper\Projeto',
+                'Logo'=> '\Estrutura\View\Helper\Logo',
+                'Data'=> '\Estrutura\View\Helper\Data',
+                'FormInput' => '\Estrutura\View\Helper\FormInput',
+                'Perfil' => '\Estrutura\View\Helper\Perfil',
+                'Info' => '\Estrutura\View\Helper\Info',
+                'Acl' => '\Estrutura\View\Helper\Acl',
             ),
         );
     }

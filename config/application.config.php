@@ -7,7 +7,7 @@ return array(
         'Autenticacao',
         'Usuario',
         'Estrutura',
-        'DOMPDFModule',
+        //'DOMPDFModule',
         'Gerador',
         'Modulo',
         'RiskManager',
@@ -19,10 +19,10 @@ return array(
         'module_paths' => array(
             './module',
             './vendor',
-            './vendor/moduloapi',
+           // './vendor/moduloapi',
         ),
         'config_glob_paths' => array(
-            'config/autoload/global.php',
+            'config/autoload/global.php',            
         ),
     ),
 );

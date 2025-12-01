@@ -6,8 +6,8 @@ use ReflectionMethod;
 use Traversable;
 use Zend\Debug\Debug;
 use Zend\Stdlib\Exception;
-use Zend\Hydrator\AbstractHydrator;
-use Zend\Hydrator\HydratorOptionsInterface;
+use Zend\Stdlib\Hydrator\AbstractHydrator;
+use Zend\Stdlib\Hydrator\HydratorOptionsInterface;
 
 class TableEntityMapper extends AbstractHydrator implements HydratorOptionsInterface
 {

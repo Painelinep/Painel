@@ -4,7 +4,7 @@ return array(
     'router' => array(
         'routes' => array(
             'gerador-home' => array(
-                'type' => 'Zend\Router\Http\Literal',
+                'type' => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/gerador/',
                     'defaults' => array(
@@ -35,11 +35,8 @@ return array(
         ),
     ),
     'controllers' => array(
-        'factories' => array(
-            Gerador\Controller\GeradorController::class => Zend\ServiceManager\Factory\InvokableFactory::class
-        ),
-        'aliases' => array(
-            'gerador' => Gerador\Controller\GeradorController::class
+        'invokables' => array(
+            'gerador' => 'Gerador\Controller\GeradorController'
         ),
     ),
     'view_manager' => array(
